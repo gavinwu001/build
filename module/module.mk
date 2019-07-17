@@ -1,34 +1,36 @@
 include $(rootdir)/build/config/env.mk
 
 MODULE_PATH = $(rootdir)/modules/$(MODULE)
-MODULE_SRC_PATH = $(rootdir)/modules/$(MODULE)/src
+MODULE_SRC_INC_PATH = $(MODULE_PATH)/inc
+MODULE_SRC_PATH = $(MODULE_PATH)/src
+
 MODULE_OUTPUT_PATH = $(outputs-dir)/$(MODULE)/$(MODULE_VERSION)
 
-MODULE_TMP_PATH = $(outputs-dir)/$(MODULE)/$(MODULE_VERSION)/.tmp
-MODULE_INC_PATH = $(outputs-dir)/$(MODULE)/$(MODULE_VERSION)/inc
-MODULE_LIB_PATH = $(outputs-dir)/$(MODULE)/$(MODULE_VERSION)/lib
-MODULE_BIN_PATH = $(outputs-dir)/$(MODULE)/$(MODULE_VERSION)/bin
-MODULE_CFG_PATH = $(outputs-dir)/$(MODULE)/$(MODULE_VERSION)/etc
+MODULE_OUTPUT_TMP_PATH = $(MODULE_OUTPUT_PATH)/.tmp
+MODULE_OUTPUT_INC_PATH = $(MODULE_OUTPUT_PATH)/inc
+MODULE_OUTPUT_LIB_PATH = $(MODULE_OUTPUT_PATH)/lib
+MODULE_OUTPUT_BIN_PATH = $(MODULE_OUTPUT_PATH)/bin
+MODULE_OUTPUT_CFG_PATH = $(MODULE_OUTPUT_PATH)/etc
 
 MODULE_OBJS = $(patsubst %.c, %.o, $(MODULE_SRC))
-MODULE_OUTPUT_OBJS = $(MODULE_OBJS:%=$(MODULE_TMP_PATH)/%)
+MODULE_OUTPUT_OBJS = $(MODULE_OBJS:%=$(MODULE_OUTPUT_TMP_PATH)/%)
 
 include $(rootdir)/build/compilation/compilation.mk
 
 prepare_module:
-	$(MKDIR) $(MODULE_TMP_PATH)
-	$(MKDIR) $(MODULE_INC_PATH)
-	$(MKDIR) $(MODULE_LIB_PATH)
-	$(MKDIR) $(MODULE_BIN_PATH)
-	$(MKDIR) $(MODULE_CFG_PATH)
+	$(MKDIR) $(MODULE_OUTPUT_TMP_PATH)
+	$(MKDIR) $(MODULE_OUTPUT_INC_PATH)
+	$(MKDIR) $(MODULE_OUTPUT_LIB_PATH)
+	$(MKDIR) $(MODULE_OUTPUT_BIN_PATH)
+	$(MKDIR) $(MODULE_OUTPUT_CFG_PATH)
 
-build_module: $(MODULE_TARGET)
-	@echo $(MODULE_SRC)
-	@echo $(MODULE_OUTPUT_OBJS)
+build_module: $(MODULE_TMP_TARGET)
 
-clean_module:
+install_module:
+	$(CP) ${MODULE_SRC_INC_PATH} ${MODULE_OUTPUT_PATH}
+	$(CP) ${MODULE_TMP_TARGET} ${MODULE_TARGET}
+
+module_build: prepare_module build_module install_module
+
+module_clean:
 	rm -rf $(MODULE_OUTPUT_PATH)
-
-module_build: prepare_module build_module
-
-module_clean: clean_module
