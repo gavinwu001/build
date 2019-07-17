@@ -1,3 +1,5 @@
+MODULE_DEPS_MODULES = $(subst -,/, ${MODULE_DEPS})
+MODULE_INCLUDE_FLAGS = ${MODULE_SRC_INC_PATH} $(MODULE_DEPS_MODULES:%=-I${outputs-dir}/%/inc)
 
 ${MODULE_OUTPUT_TMP_PATH}/%.o: ${MODULE_SRC_PATH}/%.c
-	$(GCC) -c $^ -o $@
+	$(GCC) -c $^ -o $@ ${MODULE_INCLUDE_FLAGS}
