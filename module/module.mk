@@ -1,10 +1,10 @@
-include $(rootdir)/build/config/env.mk
+include $(ROOTDIR)/build/config/env.mk
 
-MODULE_PATH = $(rootdir)/modules/$(MODULE)
+MODULE_PATH = $(ROOTDIR)/modules/$(MODULE)
 MODULE_SRC_INC_PATH = $(MODULE_PATH)/inc
 MODULE_SRC_PATH = $(MODULE_PATH)/src
 
-MODULE_OUTPUT_PATH = $(outputs-dir)/$(MODULE)/$(MODULE_VERSION)
+MODULE_OUTPUT_PATH = $(OUTPUTS_DIR)/$(MODULE)/$(MODULE_VERSION)
 
 MODULE_OUTPUT_TMP_PATH = $(MODULE_OUTPUT_PATH)/.tmp
 MODULE_OUTPUT_INC_PATH = $(MODULE_OUTPUT_PATH)/inc/${MODULE}
@@ -15,7 +15,7 @@ MODULE_OUTPUT_CFG_PATH = $(MODULE_OUTPUT_PATH)/etc
 MODULE_OBJS = $(patsubst %.c, %.o, $(MODULE_SRC))
 MODULE_OUTPUT_OBJS = $(MODULE_OBJS:%=$(MODULE_OUTPUT_TMP_PATH)/%)
 
-include $(rootdir)/build/compilation/compilation.mk
+include $(ROOTDIR)/build/compilation/compilation.mk
 
 prepare_module:
 	$(MKDIR) $(MODULE_OUTPUT_TMP_PATH)

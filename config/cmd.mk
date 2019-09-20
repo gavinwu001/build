@@ -7,4 +7,5 @@ export CP = cp -r
 
 
 export GCC = gcc
-export AR = ar
+export AR  = ar
+export LD  = ld

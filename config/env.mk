@@ -1,2 +1,2 @@
-include $(rootdir)/build/config/dir.mk
-include $(rootdir)/build/config/cmd.mk
+include $(ROOTDIR)/build/config/dir.mk
+include $(ROOTDIR)/build/config/cmd.mk

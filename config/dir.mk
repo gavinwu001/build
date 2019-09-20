@@ -1,8 +1,8 @@
-export host-tools-src-dir=$(rootdir)/host-tools/src
-export host-tools-outputs-dir=$(rootdir)/host-tools-outputs
+export HOST_TOOLS_SRC_DIR=$(ROOTDIR)/host-tools/src
+export HOST_TOOLS_OUTPUTS_DIR=$(ROOTDIR)/host-tools-outputs
 
-export modules-src-dir=$(rootdir)/modules
-export outputs-dir=$(rootdir)/outputs
+export MODULES_SRC_DIR=$(ROOTDIR)/modules
+export OUTPUTS_DIR=$(ROOTDIR)/outputs
 
 
-export packages-dir=$(rootdir)/packages
+export PACKAGES_DIR=$(ROOTDIR)/packages
