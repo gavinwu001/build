@@ -38,6 +38,9 @@ install_module:
 
 module_build: prepare_module build_module install_module
 
+module_clean:
+	rm -rf $(MODULE_OUTPUT_PATH)
+
 build_module_test: $(MODULE_TMP_TARGET_TEST)
 
 install_module_test:
@@ -45,5 +48,6 @@ install_module_test:
 
 module_test:build_module_test install_module_test
 
-module_clean:
-	rm -rf $(MODULE_OUTPUT_PATH)
+module_testclean:
+	rm -rf $(MODULE_OUTPUT_TMP_TEST_PATH)
+	rm -rf $(MODULE_OUTPUT_TEST_PATH)

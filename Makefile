@@ -22,3 +22,10 @@ $(test_modules):
 	$(MAKE) -C $(MODULES_SRC_DIR)/$(@:test_%=%)/test module_test
 
 test: $(test_modules)
+
+testclean_modules = $(modules:%=testclean_%)
+
+$(testclean_modules):
+	$(MAKE) -C $(MODULES_SRC_DIR)/$(@:testclean_%=%)/test module_testclean
+
+testclean: $(testclean_modules)
