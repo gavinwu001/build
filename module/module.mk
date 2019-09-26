@@ -49,5 +49,5 @@ install_module_test:
 module_test:build_module_test install_module_test
 
 module_testclean:
-	rm -rf $(MODULE_OUTPUT_TMP_TEST_PATH)
-	rm -rf $(MODULE_OUTPUT_TEST_PATH)
+	rm -rf $(MODULE_OUTPUT_TMP_TEST_PATH)/*
+	rm -rf $(MODULE_OUTPUT_TEST_PATH)/*
