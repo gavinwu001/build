@@ -7,5 +7,6 @@ export CP = cp -r
 
 
 export GCC = gcc
+export GXX = g++
 export AR  = ar
 export LD  = ld
