@@ -35,5 +35,5 @@ install_submodulechild:
 
 submodulechild_build: prepare_submodulechild build_submodulechild install_submodulechild
 
-module_clean:
+submodulechild_clean:
 	rm -rf $(SUBMODULECHILD_OUTPUT_PATH)

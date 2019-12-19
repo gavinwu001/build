@@ -33,8 +33,12 @@ prepare_module:
 build_module: $(MODULE_TMP_TARGET)
 
 install_module:
-	$(CP) ${MODULE_SRC_INC_PATH}/* ${MODULE_OUTPUT_INC_PATH}
-	$(CP) ${MODULE_TMP_TARGET} ${MODULE_TARGET}
+	if [ -d ${MODULE_SRC_INC_PATH} ]; then \
+		$(CP) ${MODULE_SRC_INC_PATH}/* ${MODULE_OUTPUT_INC_PATH}; \
+	fi
+	if [ -d ${MODULE_TMP_TARGET} ]; then \
+		$(CP) ${MODULE_TMP_TARGET} ${MODULE_TARGET}; \
+	fi
 
 module_build: prepare_module build_module install_module
 
