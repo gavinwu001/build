@@ -36,7 +36,7 @@ install_module:
 	if [ -d ${MODULE_SRC_INC_PATH} ]; then \
 		$(CP) ${MODULE_SRC_INC_PATH}/* ${MODULE_OUTPUT_INC_PATH}; \
 	fi
-	if [ -d ${MODULE_TMP_TARGET} ]; then \
+	if [ -f ${MODULE_TMP_TARGET} ]; then \
 		$(CP) ${MODULE_TMP_TARGET} ${MODULE_TARGET}; \
 	fi
 
