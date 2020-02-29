@@ -33,7 +33,9 @@ install_submodulechild:
 	fi
 	$(CP) ${SUBMODULECHILD_TMP_TARGET} ${SUBMODULECHILD_TARGET}
 
-submodulechild_build: prepare_submodulechild build_submodulechild install_submodulechild
+submodulechild_build_prerequisites = prepare_submodulechild build_submodulechild install_submodulechild
+
+submodulechild_build: $(submodulechild_build_prerequisites)
 
 submodulechild_clean:
 	rm -rf $(SUBMODULECHILD_OUTPUT_PATH)
