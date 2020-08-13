@@ -9,7 +9,12 @@ build_modules = $(modules:%=build_%)
 $(build_modules):
 	$(MAKE) -C $(MODULES_SRC_DIR)/$(@:build_%=%) module_build
 
-build: $(build_modules)
+build_3rd = $(3rd:%=build_%)
+$(build_3rd):
+	$(MAKE) -C $(3RD_SRC_DIR)/$(@:build_%=%) 3rd_build
+
+
+build: $(build_modules) $(build_3rd)
 
 clean_modules = $(modules:%=clean_%)
 $(clean_modules):

@@ -50,8 +50,8 @@ build_module_test: $(MODULE_TMP_TARGET_TEST)
 install_module_test:
 	$(CP) ${MODULE_TMP_TARGET_TEST} ${MODULE_TARGET_TEST}
 
-module_test:build_module_test install_module_test
-
 module_testclean:
 	rm -rf $(MODULE_OUTPUT_TMP_TEST_PATH)/*
 	rm -rf $(MODULE_OUTPUT_TEST_PATH)/*
+
+module_test:module_testclean build_module_test install_module_test
