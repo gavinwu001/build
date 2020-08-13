@@ -14,13 +14,18 @@ $(build_3rd):
 	$(MAKE) -C $(3RD_SRC_DIR)/$(@:build_%=%) 3rd_build
 
 
-build: $(build_modules) $(build_3rd)
+build: $(build_3rd) $(build_modules)
 
 clean_modules = $(modules:%=clean_%)
 $(clean_modules):
 	$(MAKE) -C $(MODULES_SRC_DIR)/$(@:clean_%=%) module_clean
 
-clean: $(clean_modules)
+clean_3rd = $(3rd:%=clean_%)
+$(clean_3rd):
+	$(MAKE) -C $(3RD_SRC_DIR)/$(@:clean_%=%) 3rd_clean
+
+
+clean: $(clean_3rd) $(clean_modules)
 
 rebuild: clean build
 
