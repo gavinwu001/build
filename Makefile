@@ -41,3 +41,23 @@ $(testclean_modules):
 	$(MAKE) -C $(MODULES_SRC_DIR)/$(@:testclean_%=%)/test module_testclean
 
 testclean: $(testclean_modules)
+
+host_tools_pkg_build = $(host_tools_pkg:%=host_tools_pkg_build_%)
+$(host_tools_pkg_build):
+	$(MAKE) -C $(HOST_TOOLS_PKG_DIR)/$(@:host_tools_pkg_build_%=%)/ host_tools_pkg_build
+
+build_host_tools_pkg: $(host_tools_pkg_build)
+
+host_tools_pkg_clean = $(host_tools_pkg:%=host_tools_pkg_clean_%)
+$(host_tools_pkg_clean):
+	$(MAKE) -C $(HOST_TOOLS_PKG_DIR)/$(@:host_tools_pkg_clean_%=%)/ host_tools_pkg_clean
+
+clean_host_tools_pkg:$(host_tools_pkg_clean)
+
+host_tools_pkg_clean = $(host_tools_pkg:%=host_tools_pkg_clean_%)
+$(host_tools_pkg_clean):
+	$(MAKE) -C $(HOST_TOOLS_PKG_DIR)/$(@:host_tools_pkg_clean_%=%)/ host_tools_pkg_clean
+
+rebuild_host_tools_pkg:clean_host_tools_pkg build_host_tools_pkg
+
+testclean_modules = $(modules:%=testclean_%)
